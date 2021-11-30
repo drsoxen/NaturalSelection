@@ -1,4 +1,10 @@
 # NaturalSelection
 Neural network through natural selection
 
-![](Saved Videos/Circle swirl.gif)
+Visualizations brought to you by ImageMagick, FFmpeg and Graphviz
+
+![](Example.gif)
+
+Neural Net example:
+
+![](NeuralNet.png)
