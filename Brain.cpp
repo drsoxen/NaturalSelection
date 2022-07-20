@@ -2,7 +2,6 @@
 #include <iostream>
 #include <chrono>
 #include <fstream>
-#include <graphviz/gvc.h>
 #include "Utils.h"
 
 using namespace std;
@@ -135,66 +134,6 @@ void Brain::Forget()
 		m_outputNeurons[i].m_value = 0;
 	}
 }
-
-void Brain::PrintNeuralNet()
-{
-	vector<double> weights;
-
-	for(int i = 0; i < m_inputNeurons.size(); i++)
-	{
-		for(int j = 0; j < m_inputNeurons[i].m_connections.size(); j++)
-		{
-
-			weights.push_back(m_inputNeurons[i].m_connections[j].m_weight);
-		}
-	}
-
-	for(int i = 0; i < m_hiddenNeurons.size(); i++)
-	{
-		for(int j = 0; j < m_hiddenNeurons[i].m_connections.size(); j++)
-		{
-
-			weights.push_back(m_hiddenNeurons[i].m_connections[j].m_weight);
-		}
-	}
-
-	string replaceStr = "\"x\""; //String to replace
-    ifstream filein("Template.dot"); //File to read from
-    ofstream fileout("NeuralNet.dot"); //Temporary file
-    string strTemp;
-
-    int index = 0;
-
- 	while(filein >> strTemp)//taking every word and comparing with replaceStr
-    {
-        if(strTemp == replaceStr)//if your word found then replace
-        {
-            strTemp = to_string(weights[index]);
-            index++;
-        }
-        strTemp += " ";
-        fileout << strTemp;//output everything to fileout(temp.txt)
-    }
-    filein.close();
-    fileout.close();
-
-
-	GVC_t *gvc;
-    Agraph_t *g;
-    FILE *fp;
-	string file_path = "NeuralNet";
-
-    gvc = gvContext();
-	fp = fopen((file_path+".dot").c_str(), "r");
-    g = agread(fp, 0);
-    gvLayout(gvc, g, "dot");
-    gvRender(gvc, g, "png", fopen((file_path+".png").c_str(), "w"));
-    gvFreeLayout(gvc, g);
-    agclose(g);
-    gvFreeContext(gvc);
-
-}
-
 
 Connection::Connection(double weight, Neuron * next)
 {

@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <math.h>
-#include "Genome.h"
 #include "Brain.h"
 #include "Geometry.h"
 #include "Utils.h"
@@ -17,7 +16,6 @@ public:
 	Vector2 m_startPosition;
 	Vector2 m_position;
 	Vector3 m_colour;
-	Genome m_genome;
 	Brain m_brain;
 
 	Vector2 m_mapDimensions;
@@ -27,7 +25,7 @@ public:
 	double m_rotation = ((double)rand()/RAND_MAX) * 2*M_PI;
 
 	Creature(Vector2 mapDimensions, Vector2 position, Vector3 colour);
-	Creature *  Mitosis();
+	Creature *  Mitosis(int targetRadius);
 
 	void Act();
 	void GetInputs();

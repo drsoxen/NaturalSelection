@@ -7,9 +7,9 @@ Creature::Creature(Vector2 mapDimensions, Vector2 position, Vector3 colour) : m_
 
 }
 
-Creature * Creature::Mitosis()
+Creature * Creature::Mitosis(int targetRadius)
 {
-	if(m_position.pythagoreanDistance(Vector2(m_mapDimensions.x/2, m_mapDimensions.y/2)) < m_mapDimensions.x/15 && m_startPosition != m_position)
+	if(m_position.pythagoreanDistance(Vector2(m_mapDimensions.x/2, m_mapDimensions.y/2)) < m_mapDimensions.x/targetRadius && m_startPosition != m_position)
 	{
 		Creature *daughter = new Creature(m_mapDimensions, Vector2(rand()%((int)m_mapDimensions.x-1)+1, rand()%((int)m_mapDimensions.y-1)+1), m_colour);
 		daughter->m_brain.InheritConnections(&m_brain);

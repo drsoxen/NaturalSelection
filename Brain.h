@@ -60,9 +60,6 @@ public:
 	OutputType MakeDecision();
 	void Process();
 	void Forget();
-
-	void PrintNeuralNet();
-
 };
 
 
